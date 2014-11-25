@@ -112,7 +112,9 @@ endif
 let g:airline_powerline_fonts=1
 " ------------------------------------------------------------------
 
-
+" ------------------------------------------------------------------
+" Edit customs 
+" ------------------------------------------------------------------
 function! Preserve(command)
   " Preparation: save last search, and cursor position.
   let _s=@/
@@ -133,12 +135,16 @@ nmap _= :call Preserve("normal gg=G")<CR>
 nmap ,== :call Preserve("normal gg<S-V><S-G>=")<CR>
 
 " Apaga os espacos em branco no final da linha automaticamente para os
-" arquivos com final .pp e .rb.
+" arquivos com final .pp, .py .rb.
 autocmd BufWritePre *.pp, *.rb, *.py :call Preserve("%s/\\s\\+$//e")<CR>
 
 " Indentação para arquivos com final .py
-autocmd FileType python setlocal ts=2 sts=4 sw=4 expandtab
+autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
+" ------------------------------------------------------------------
 
+" ------------------------------------------------------------------
+" Teclas de atalho 
+" ------------------------------------------------------------------
 " for linux and windows users (using the control key)
 map <C-S-]> gt
 map <C-S-[> gT
@@ -174,33 +180,4 @@ autocmd FileType mail             let b:comment_leader = '> '
 autocmd FileType vim              let b:comment_leader = '" '
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
-
-
-" Apaga os espacos em branco no final da linha automaticamente para os "
-" arquivos com final .pp e .rb.
-autocmd BufWritePre *.pp, *.rb, *.py :call Preserve("%s/\\s\\+$//e")<CR>
-
-" Commenting blocks of code.
-autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
-autocmd FileType sh,ruby,python   let b:comment_leader = '# '
-autocmd FileType conf,fstab       let b:comment_leader = '# '
-autocmd FileType tex              let b:comment_leader = '% '
-autocmd FileType mail             let b:comment_leader = '> '
-autocmd FileType vim              let b:comment_leader = '" '
-noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
-noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
-
-" Indentação para arquivos com final .py
-autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
-
-" TextMate ident command
-nmap <D-[> <<
-nmap <D-]> >>
-vmap <D-[> <gv
-vmap <D-]> >gv
-
-" Map Windows change
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
+" ------------------------------------------------------------------
