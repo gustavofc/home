@@ -11,13 +11,23 @@ Bundle 'gmarik/vundle'
 " My bundles here:
 "
 " original repos on GitHub
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'tpope/vim-rails.git'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'davidhalter/jedi-vim'
-Bundle 'kien/ctrlp.vim'
+" The following are examples of different formats supported.                       
+" Keep Plugin commands between vundle#begin/end.                                   
+" plugin on GitHub repo
+
+" The best Git wrapper of all time
+Plugin 'tpope/vim-fugitive'
+" Pyflakes is syntax checking and linting library for python                       
+Plugin 'kevinw/pyflakes-vim.git'                                                   
+" Solarized Colorscheme for Vim                                                    
+Plugin 'altercation/vim-colors-solarized'                                          
+" In practical terms, pathogen.vim makes it super easy to install plugins
+" and runtime files in their own private directories.                                  
+Plugin 'tpope/vim-pathogen'                                                        
+" lean & mean status/tabline for vim that's light as air                           
+Plugin 'bling/vim-airline'                                                         
+" Using the jedi autocompletion library for VIM.                                   
+Plugin 'davidhalter/jedi-vim'  
 
 
 " vim-scripts repos
@@ -43,12 +53,13 @@ filetype plugin indent on			" required!
 " ------------------------------------------------------------------
 " Solarized Colorscheme Config
 " ------------------------------------------------------------------
-let g:solarized_termtrans=1		 "default value is 0
-let g:solarized_visibility="high"		 "default value is normal
-let g:solarized_hitrail=0		 "default value is 0
-syntax enable
 set background=dark
+let g:solarized_termtrans=1
+let g:solarized_termcolors=256
+let g:solarized_contrast="high"
+let g:solarized_visibility="high"
 colorscheme solarized
+syntax on
 " ------------------------------------------------------------------
 
 " The following items are available options, but do not need to be
@@ -67,26 +78,41 @@ let g:solarized_termcolors='256'
 " Custom Options
 " ------------------------------------------------------------------
 "  Abbreviations
-ab ln ---------------------------------------------------
+" ------------------------------------------------------------------
+ab ln ------------------------------------------------------------------
 ab env_bash #!/bin/bash
 ab py_env #!/usr/bin/env python
 ab py_enc # -*- coding: utf-8 -*-
-" Line numbers
+" ------------------------------------------------------------------
+
+" ------------------------------------------------------------------
+" Vim area customs 
+" ------------------------------------------------------------------
+"Column and line highlight
+set cc=80
+set cul
+" Line Number
 set number
-" Colors settings
-set t_Co=256
-set bg=dark
 " Tabs and spaces settings
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
+" List options
 set listchars=eol:$,tab:>>,trail:·,nbsp:.
 nmap <leader>l :set list!<CR>
-" Cursor settings
-set cursorline
-"set cursorcolumn
-set colorcolumn=80
+" Enable hlsearch
+set hls
+" Airline config
+set noshowmode
+set laststatus=2
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+let g:airline_powerline_fonts=1
+" ------------------------------------------------------------------
+
+
 function! Preserve(command)
   " Preparation: save last search, and cursor position.
   let _s=@/
@@ -149,10 +175,32 @@ autocmd FileType vim              let b:comment_leader = '" '
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
 
-" CrtlP config
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+
+" Apaga os espacos em branco no final da linha automaticamente para os "
+" arquivos com final .pp e .rb.
+autocmd BufWritePre *.pp, *.rb, *.py :call Preserve("%s/\\s\\+$//e")<CR>
+
+" Commenting blocks of code.
+autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
+autocmd FileType sh,ruby,python   let b:comment_leader = '# '
+autocmd FileType conf,fstab       let b:comment_leader = '# '
+autocmd FileType tex              let b:comment_leader = '% '
+autocmd FileType mail             let b:comment_leader = '> '
+autocmd FileType vim              let b:comment_leader = '" '
+noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
+noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
+
+" Indentação para arquivos com final .py
+autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
+
+" TextMate ident command
+nmap <D-[> <<
+nmap <D-]> >>
+vmap <D-[> <gv
+vmap <D-]> >gv
+
+" Map Windows change
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
