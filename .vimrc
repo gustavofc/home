@@ -1,33 +1,33 @@
 set nocompatible							" be iMproved
 filetype off									" required!
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
 " My bundles here:
 "
 " original repos on GitHub
-" The following are examples of different formats supported.                       
-" Keep Plugin commands between vundle#begin/end.                                   
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 
 " The best Git wrapper of all time
 Plugin 'tpope/vim-fugitive'
-" Pyflakes is syntax checking and linting library for python                       
-Plugin 'kevinw/pyflakes-vim.git'                                                   
-" Solarized Colorscheme for Vim                                                    
-Plugin 'altercation/vim-colors-solarized'                                          
+" Syntax checking hacks for vim
+Plugin 'scrooloose/syntastic'
+" Solarized Colorscheme for Vim
+Plugin 'altercation/vim-colors-solarized'
 " In practical terms, pathogen.vim makes it super easy to install plugins
-" and runtime files in their own private directories.                                  
-Plugin 'tpope/vim-pathogen'                                                        
-" lean & mean status/tabline for vim that's light as air                           
-Plugin 'bling/vim-airline'                                                         
-" Using the jedi autocompletion library for VIM.                                   
-Plugin 'davidhalter/jedi-vim'  
+" and runtime files in their own private directories.
+"Plugin 'tpope/vim-pathogen'
+" lean & mean status/tabline for vim that's light as air
+Plugin 'bling/vim-airline'
+" Using the jedi autocompletion library for VIM.
+Plugin 'davidhalter/jedi-vim'
 
 
 " vim-scripts repos
@@ -38,7 +38,7 @@ Bundle 'FuzzyFinder'
 " Git repos on your local machine (i.e. when working on your own plugin)
 "Bundle 'file:///Users/gmarik/path/to/plugin'
 " ...
-
+call vundle#end()
 filetype plugin indent on			" required!
 "
 " Brief help
@@ -53,13 +53,15 @@ filetype plugin indent on			" required!
 " ------------------------------------------------------------------
 " Solarized Colorscheme Config
 " ------------------------------------------------------------------
+set t_Co=256
 set background=dark
 let g:solarized_termtrans=1
 let g:solarized_termcolors=256
+let g:solarized_degrade=1
 let g:solarized_contrast="high"
 let g:solarized_visibility="high"
 colorscheme solarized
-syntax on
+syntax enable
 " ------------------------------------------------------------------
 
 " The following items are available options, but do not need to be
@@ -69,7 +71,7 @@ syntax on
 " let g:solarized_bold=1
 " let g:solarized_underline=1
 " let g:solarized_italic=1
-let g:solarized_termcolors='256'
+" let g:solarized_termcolors='256'
 " let g:solarized_contrast="normal"
 " let g:solarized_diffmode="normal"
 " let g:solarized_menu=1
@@ -86,7 +88,7 @@ ab py_enc # -*- coding: utf-8 -*-
 " ------------------------------------------------------------------
 
 " ------------------------------------------------------------------
-" Vim area customs 
+" Vim area customs
 " ------------------------------------------------------------------
 "Column and line highlight
 set cc=80
@@ -113,7 +115,7 @@ let g:airline_powerline_fonts=1
 " ------------------------------------------------------------------
 
 " ------------------------------------------------------------------
-" Edit customs 
+" Edit customs
 " ------------------------------------------------------------------
 function! Preserve(command)
   " Preparation: save last search, and cursor position.
@@ -143,7 +145,7 @@ autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
 " ------------------------------------------------------------------
 
 " ------------------------------------------------------------------
-" Teclas de atalho 
+" Teclas de atalho
 " ------------------------------------------------------------------
 " for linux and windows users (using the control key)
 map <C-S-]> gt
