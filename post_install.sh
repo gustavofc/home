@@ -15,6 +15,11 @@ function install_packages(){
   yum -y install cups-pdf wget rpm-build vim bind-utils iptraf make gcc git
 }
 
+function git_config(){
+  git config --global push.default=simple
+  git config --global credential.helper cache
+}
+
 function terminal_colors(){
 # Configuração Gnome-terminal
 # http://www.if-not-true-then-false.com/2012/solarized-linux/
