@@ -64,7 +64,12 @@ function install_powerlines_fonts(){
   ./fonts/install.sh
 }
 
-
+function install_tor(){
+  yum install tor
+  sudo echo "\nHTTPProxy 127.0.0.1:3128
+  HTTPSProxy 127.0.0.1:3128" >> /etc/tor/torrc
+  sudo systemctl start tor
+}
 
 # Main
 download_home_files
