@@ -71,6 +71,11 @@ function install_tor(){
   sudo systemctl start tor
 }
 
+function install_python_pkgs(){
+  yum -y install python-pip python-ipython-console
+  sudo pip install virtualenv
+}
+
 # Main
 download_home_files
 install_powerlines_fonts
