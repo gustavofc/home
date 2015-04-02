@@ -28,6 +28,8 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
 " Using the jedi autocompletion library for VIM.
 Plugin 'davidhalter/jedi-vim'
+" A Vim plugin that always highlights the enclosing html/xml tags
+Plugin 'Valloric/MatchTagAlways'
 
 
 " vim-scripts repos
@@ -101,7 +103,7 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 " List options
-set listchars=eol:$,tab:>>,trail:·,nbsp:.
+set listchars=nbsp:.,eol:$,tab:>>,trail:·
 nmap <leader>l :set list!<CR>
 " Enable hlsearch
 set hls
@@ -138,7 +140,7 @@ nmap ,== :call Preserve("normal gg<S-V><S-G>=")<CR>
 
 " Apaga os espacos em branco no final da linha automaticamente para os
 " arquivos com final .pp, .py .rb.
-autocmd BufWritePre *.pp, *.rb, *.py :call Preserve("%s/\\s\\+$//e")<CR>
+autocmd BufWritePre *.pp, *.rb, *.py *.js *.html :call Preserve("%s/\\s\\+$//e")<CR>
 
 " Indentação para arquivos com final .py
 autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
@@ -174,12 +176,12 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 " Commenting blocks of code.
-autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
-autocmd FileType sh,ruby,python   let b:comment_leader = '# '
-autocmd FileType conf,fstab       let b:comment_leader = '# '
-autocmd FileType tex              let b:comment_leader = '% '
-autocmd FileType mail             let b:comment_leader = '> '
-autocmd FileType vim              let b:comment_leader = '" '
+autocmd FileType c,cpp,java,js      let b:comment_leader = '// '
+autocmd FileType sh,ruby,python     let b:comment_leader = '# '
+autocmd FileType conf,fstab         let b:comment_leader = '# '
+autocmd FileType tex                let b:comment_leader = '% '
+autocmd FileType mail               let b:comment_leader = '> '
+autocmd FileType vim                let b:comment_leader = '" '
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
 " ------------------------------------------------------------------
