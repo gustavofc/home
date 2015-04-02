@@ -83,7 +83,7 @@ syntax enable
 " ------------------------------------------------------------------
 "  Abbreviations
 " ------------------------------------------------------------------
-ab ln ------------------------------------------------------------------
+ab sec_ln ------------------------------------------------------------------
 ab env_bash #!/bin/bash
 ab py_env #!/usr/bin/env python
 ab py_enc # -*- coding: utf-8 -*-
@@ -184,4 +184,18 @@ autocmd FileType mail               let b:comment_leader = '> '
 autocmd FileType vim                let b:comment_leader = '" '
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
+" ------------------------------------------------------------------
+
+" ------------------------------------------------------------------
+"  Syntastic Settings
+" ------------------------------------------------------------------
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['pylint']
 " ------------------------------------------------------------------
