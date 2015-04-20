@@ -3,12 +3,12 @@
 function download_home_files(){
   mkdir ~/github
   git clone https://github.com/gustavofc/home.git ~/github/home
-  ln -s github/home/.bashrc
-  ln -s github/home/.bash_aliases
-  ln -s github/home/.vimrc
-  ln -s github/home/.vim
-  ln -s github/home/.toprc
-  source github/home/.bashrc
+  ln -s github/home/bashrc ~/.bashrc
+  ln -s github/home/bash_aliases ~/.bash_aliases
+  ln -s github/home/vimrc ~/.vimrc
+  ln -s github/home/vim ~/.vim
+  ln -s github/home/toprc ~/.toprc
+  source github/home/bashrc
 }
 
 function install_packages(){
