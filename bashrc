@@ -10,6 +10,9 @@ fi
 if [ -f ~/.bash_aliases ]; then
       . ~/.bash_aliases
 fi
+if [ -f ~/.ps1_git ]; then
+      . ~/.ps1_git
+fi
 
 export HISTCONTROL=ignoredups:erasedups # no duplicate entries
 export HISTSIZE=100000                  # big big history

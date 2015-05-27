@@ -134,6 +134,9 @@ if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
 endif
 let g:airline_powerline_fonts=1
+" Always show 5 lines above/below the cursor, so scrolling past bottom/top of
+" the screen will show more context of surrounding lines
+set scrolloff=5
 " ------------------------------------------------------------------
 
 
@@ -196,6 +199,9 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+
+" Unhighlight last search term.
+nnoremap <C-\> :noh<Return>
 
 " Commenting blocks of code.
 autocmd FileType c,cpp,java,js      let b:comment_leader = '// '
