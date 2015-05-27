@@ -81,10 +81,20 @@ syntax enable
 " -------------------------------------------------------------------
 " Custom Options
 " ------------------------------------------------------------------
+
+
+" Better copy & paste
+set pastetoggle=<F2>
+set clipboard=unnamed
+
+" map sort function key
+vnoremap <leader>s :sort<CR>
+
+" ------------------------------------------------------------------
 "  Abbreviations
 " ------------------------------------------------------------------
 ab sec_ln ------------------------------------------------------------------
-ab env_bash #!/bin/bash
+ab bash_env #!/bin/bash
 ab py_env #!/usr/bin/env python
 ab py_enc # -*- coding: utf-8 -*-
 " ------------------------------------------------------------------
@@ -93,20 +103,30 @@ ab py_enc # -*- coding: utf-8 -*-
 " Vim area customs
 " ------------------------------------------------------------------
 "Column and line highlight
-set cc=80
-set cul
+set tw=79
+set nowrap
+set fo-=t
+set colorcolumn=80
+highlight ColorColumn ctermbg=236
+set cursorline
+highlight cursorline ctermbg=236
+
 " Line Number
 set number
+
 " Tabs and spaces settings
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
+
 " List options
 set listchars=nbsp:.,eol:$,tab:>>,trail:·
 nmap <leader>l :set list!<CR>
+
 " Enable hlsearch
 set hls
+
 " Airline config
 set noshowmode
 set laststatus=2
@@ -115,6 +135,7 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_powerline_fonts=1
 " ------------------------------------------------------------------
+
 
 " ------------------------------------------------------------------
 " Edit customs
@@ -130,11 +151,14 @@ function! Preserve(command)
   let @/=_s
   call cursor(l, c)
 endfunction
+
 " Apagando espacos no final da linha
 nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
+
 " Apagando linhas em branco
 nmap _bl :call Preserve("g/^$/d")<CR>
 nmap _= :call Preserve("normal gg=G")<CR>
+
 " Formatacao da sintaxe
 nmap ,== :call Preserve("normal gg<S-V><S-G>=")<CR>
 
@@ -150,24 +174,22 @@ autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
 " Teclas de atalho
 " ------------------------------------------------------------------
 " for linux and windows users (using the control key)
-map <C-S-]> gt
-map <C-S-[> gT
-map <C-1> 1gt
-map <C-2> 2gt
-map <C-3> 3gt
-map <C-4> 4gt
-map <C-5> 5gt
-map <C-6> 6gt
-map <C-7> 7gt
-map <C-8> 8gt
-map <C-9> 9gt
-map <C-0> :tablast<CR>
+" map <C-S-]> gt
+" map <C-S-[> gT
+" map <C-1> 1gt
+" map <C-2> 2gt
+" map <C-3> 3gt
+" map <C-4> 4gt
+" map <C-5> 5gt
+" map <C-6> 6gt
+" map <C-7> 7gt
+" map <C-8> 8gt
+" map <C-9> 9gt
+" map <C-0> :tablast<CR>
 
 " TextMate ident command
-nmap <D-[> <<
-nmap <D-]> >>
-vmap <D-[> <gv
-vmap <D-]> >gv
+vnoremap < <gv
+vnoremap > >gv
 
 " Map Windows change
 map <C-h> <C-w>h
