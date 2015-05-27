@@ -19,6 +19,7 @@ shopt -s histappend                     # append to history, don't overwrite it
 # Save and reload the history after each command finishes
 #export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
-
-
 #export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+# MongoDB bin directory
+export PATH="~/treinamento/M101P_MongoDB_for_Developers/mongodb/bin:$PATH"
