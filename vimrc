@@ -30,6 +30,8 @@ Plugin 'bling/vim-airline'
 Plugin 'davidhalter/jedi-vim'
 " A Vim plugin that always highlights the enclosing html/xml tags
 Plugin 'Valloric/MatchTagAlways'
+" No-BS Python code folding for Vim
+Plugin 'tmhedberg/SimpylFold'
 
 
 " vim-scripts repos
@@ -130,6 +132,12 @@ nmap <leader>l :set list!<CR>
 
 " Enable hlsearch
 set hls
+
+" Enable folding
+"set foldmethod=indent
+"set foldlevel=99
+" Enable folding with the spacebar
+"nnoremap <space> za
 
 " Airline config
 set noshowmode
