@@ -32,6 +32,9 @@ Plugin 'davidhalter/jedi-vim'
 Plugin 'Valloric/MatchTagAlways'
 " No-BS Python code folding for Vim
 Plugin 'tmhedberg/SimpylFold'
+" This indentation script for python tries to match more closely what is
+" suggested in PEP 8
+Plugin 'vim-scripts/indentpython.vim'
 
 
 " vim-scripts repos
