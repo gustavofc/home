@@ -90,6 +90,10 @@ set clipboard=unnamed
 " map sort function key
 vnoremap <leader>s :sort<CR>
 
+" Specify different areas of the screen where the splits should occur
+set splitbelow
+set splitright
+
 " ------------------------------------------------------------------
 "  Abbreviations
 " ------------------------------------------------------------------
@@ -205,7 +209,7 @@ nnoremap <C-\> :noh<Return>
 
 " Commenting blocks of code.
 autocmd FileType c,cpp,java,js      let b:comment_leader = '// '
-autocmd FileType sh,ruby,python     let b:comment_leader = '# '
+autocmd FileType sh,yaml,python     let b:comment_leader = '# '
 autocmd FileType conf,fstab         let b:comment_leader = '# '
 autocmd FileType tex                let b:comment_leader = '% '
 autocmd FileType mail               let b:comment_leader = '> '
