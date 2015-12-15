@@ -27,10 +27,16 @@ Plugin 'altercation/vim-colors-solarized'
 " lean & mean status/tabline for vim that's light as air
 Plugin 'bling/vim-airline'
 " Using the jedi autocompletion library for VIM.
-Plugin 'davidhalter/jedi-vim'
+" Plugin 'davidhalter/jedi-vim'
 " A Vim plugin that always highlights the enclosing html/xml tags
 Plugin 'Valloric/MatchTagAlways'
-
+" No-BS Python code folding for Vim
+Plugin 'tmhedberg/SimpylFold'
+" This indentation script for python tries to match more closely what is
+" suggested in PEP 8
+Plugin 'vim-scripts/indentpython.vim'
+" Auto-complete
+"Plugin 'Valloric/YouCompleteMe'
 
 " vim-scripts repos
 Bundle 'L9'
@@ -90,6 +96,10 @@ set clipboard=unnamed
 " map sort function key
 vnoremap <leader>s :sort<CR>
 
+" Specify different areas of the screen where the splits should occur
+set splitbelow
+set splitright
+
 " ------------------------------------------------------------------
 "  Abbreviations
 " ------------------------------------------------------------------
@@ -126,6 +136,12 @@ nmap <leader>l :set list!<CR>
 
 " Enable hlsearch
 set hls
+
+" Enable folding
+"set foldmethod=indent
+"set foldlevel=99
+" Enable folding with the spacebar
+"nnoremap <space> za
 
 " Airline config
 set noshowmode
@@ -171,6 +187,10 @@ autocmd BufWritePre *.pp, *.rb, *.py *.js *.html :call Preserve("%s/\\s\\+$//e")
 
 " Indentação para arquivos com final .py
 autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
+
+" Flagging Unnecessary Whitespace
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
 " ------------------------------------------------------------------
 
 " ------------------------------------------------------------------
@@ -204,12 +224,12 @@ map <C-l> <C-w>l
 nnoremap <C-\> :noh<Return>
 
 " Commenting blocks of code.
-autocmd FileType c,cpp,java,javascript  let b:comment_leader = '//'
-autocmd FileType sh,ruby,python         let b:comment_leader = '#'
-autocmd FileType conf,fstab             let b:comment_leader = '#'
-autocmd FileType tex                    let b:comment_leader = '%'
-autocmd FileType mail                   let b:comment_leader = '>'
-autocmd FileType vim                    let b:comment_leader = '"'
+autocmd FileType c,cpp,java,js      let b:comment_leader = '// '
+autocmd FileType sh,yaml,python     let b:comment_leader = '# '
+autocmd FileType conf,fstab         let b:comment_leader = '# '
+autocmd FileType tex                let b:comment_leader = '% '
+autocmd FileType mail               let b:comment_leader = '> '
+autocmd FileType vim                let b:comment_leader = '" '
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
 " ------------------------------------------------------------------
