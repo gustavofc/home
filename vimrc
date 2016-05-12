@@ -25,7 +25,8 @@ Plugin 'altercation/vim-colors-solarized'
 " and runtime files in their own private directories.
 "Plugin 'tpope/vim-pathogen'
 " lean & mean status/tabline for vim that's light as air
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 " Using the jedi autocompletion library for VIM.
 " Plugin 'davidhalter/jedi-vim'
 " A Vim plugin that always highlights the enclosing html/xml tags
@@ -35,8 +36,6 @@ Plugin 'tmhedberg/SimpylFold'
 " This indentation script for python tries to match more closely what is
 " suggested in PEP 8
 Plugin 'vim-scripts/indentpython.vim'
-" Auto-complete
-"Plugin 'Valloric/YouCompleteMe'
 
 " vim-scripts repos
 Bundle 'L9'
@@ -189,7 +188,7 @@ autocmd BufWritePre *.pp, *.rb, *.py *.js *.html :call Preserve("%s/\\s\\+$//e")
 autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
 
 " Flagging Unnecessary Whitespace
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+"au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 " ------------------------------------------------------------------
 

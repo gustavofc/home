@@ -5,6 +5,7 @@ alias echo='echo -e'
 
 # Instalação de produtos
 alias yum='sudo -i yum'
+alias dnf='sudo -i dnf'
 alias gem='sudo -i gem'
 
 alias df='df -H'
