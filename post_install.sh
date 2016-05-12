@@ -12,7 +12,7 @@ function download_home_files(){
 }
 
 function install_packages(){
-  yum -y install cups-pdf wget rpm-build vim bind-utils iptraf make gcc git
+  dnf -y install cups-pdf wget rpm-build vim bind-utils iptraf make gcc git
 }
 
 function git_config(){
@@ -29,7 +29,7 @@ function terminal_colors(){
 }
 
 function install_cntlm(){
-  yum -y install cntlm
+  dnf -y install cntlm
   mv /etc/cntlm.conf{,.bkp}
   cat << EOF >> /etc/cntlm.conf
   Username        u013621
@@ -42,11 +42,11 @@ EOF
 }
 
 function printers(){
-  yum -y install system-config-printer
+  dnf -y install system-config-printer
 }
 
 function desktop_config(){
-  yum -y install dconf-editor
+  dnf -y install dconf-editor
   gsettings set org.gnome.desktop.interface clock-show-seconds true
   gsettings set org.gnome.desktop.interface clock-show-date true
   gsettings set org.gnome.desktop.session idle-delay 180
@@ -65,14 +65,14 @@ function install_powerlines_fonts(){
 }
 
 function install_tor(){
-  yum install tor
+  dnf install tor
   sudo echo "\nHTTPProxy 127.0.0.1:3128
   HTTPSProxy 127.0.0.1:3128" >> /etc/tor/torrc
   sudo systemctl start tor
 }
 
 function install_python_pkgs(){
-  yum -y install python-pip python-ipython-console
+  dnf -y install python-pip python-ipython-console
   sudo pip install virtualenv
 }
 
