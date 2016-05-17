@@ -21,6 +21,8 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/syntastic'
 " Solarized Colorscheme for Vim
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'jacoborus/tender'
 " In practical terms, pathogen.vim makes it super easy to install plugins
 " and runtime files in their own private directories.
 "Plugin 'tpope/vim-pathogen'
@@ -31,8 +33,6 @@ Plugin 'vim-airline/vim-airline-themes'
 " Plugin 'davidhalter/jedi-vim'
 " A Vim plugin that always highlights the enclosing html/xml tags
 Plugin 'Valloric/MatchTagAlways'
-" No-BS Python code folding for Vim
-Plugin 'tmhedberg/SimpylFold'
 " This indentation script for python tries to match more closely what is
 " suggested in PEP 8
 Plugin 'vim-scripts/indentpython.vim'
@@ -62,26 +62,13 @@ filetype plugin indent on			" required!
 " ------------------------------------------------------------------
 set t_Co=256
 set background=dark
-let g:solarized_termtrans=1
-let g:solarized_termcolors=256
-let g:solarized_degrade=1
-let g:solarized_contrast="high"
-let g:solarized_visibility="high"
-colorscheme solarized
+" let g:solarized_termtrans=1
+" let g:solarized_termcolors=256
+" let g:solarized_degrade=1
+" let g:solarized_contrast="high"
+" let g:solarized_visibility="high"
+colorscheme jellybeans
 syntax enable
-" ------------------------------------------------------------------
-
-" The following items are available options, but do not need to be
-" included in your .vimrc as they are currently set to their defaults.
-
-" let g:solarized_degrade=0
-" let g:solarized_bold=1
-" let g:solarized_underline=1
-" let g:solarized_italic=1
-" let g:solarized_termcolors='256'
-" let g:solarized_contrast="normal"
-" let g:solarized_diffmode="normal"
-" let g:solarized_menu=1
 
 " -------------------------------------------------------------------
 " Custom Options
@@ -148,7 +135,7 @@ set laststatus=2
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
 endif
-let g:airline_powerline_fonts=1
+ let g:airline_powerline_fonts=1
 " Always show 5 lines above/below the cursor, so scrolling past bottom/top of
 " the screen will show more context of surrounding lines
 set scrolloff=5
@@ -226,8 +213,6 @@ nnoremap <C-\> :noh<Return>
 autocmd FileType c,cpp,java,js      let b:comment_leader = '// '
 autocmd FileType sh,yaml,python     let b:comment_leader = '# '
 autocmd FileType conf,fstab         let b:comment_leader = '# '
-autocmd FileType tex                let b:comment_leader = '% '
-autocmd FileType mail               let b:comment_leader = '> '
 autocmd FileType vim                let b:comment_leader = '" '
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
