@@ -36,6 +36,9 @@ Plugin 'Valloric/MatchTagAlways'
 " This indentation script for python tries to match more closely what is
 " suggested in PEP 8
 Plugin 'vim-scripts/indentpython.vim'
+" Helps developers define and maintain consistent coding styles between
+" different editors and IDEs
+Plugin 'editorconfig/editorconfig-vim'
 
 " vim-scripts repos
 Bundle 'L9'
@@ -216,6 +219,9 @@ autocmd FileType conf,fstab         let b:comment_leader = '# '
 autocmd FileType vim                let b:comment_leader = '" '
 noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
+
+" Map <F5> to run python
+nnoremap <silent> <F5> :w !python %<CR>
 " ------------------------------------------------------------------
 
 " ------------------------------------------------------------------
