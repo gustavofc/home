@@ -1,0 +1,17 @@
+#----- Pip -----#
+alias pip-list="pip freeze | less"
+alias pip-search="pip freeze | grep -i"
+alias pip-remove="pip uninstall"
+alias pip-upgrade="pip install -U"
+alias pip-upgrade-all="pip freeze --local | grep -v '^\-e' | cut -d = -f 1|xargs -n1 pip install -U"
+
+#----- Debugging -----#
+alias pdb="python -m pdb"
+alias ppjson="python -m json.tool"
+alias module-locate="python -c 'from imp import find_module;from sys import argv;print(find_module(argv[1])[1])'"
+
+#----- Documentation -----#
+alias pydoc="python -m pydoc"
+
+#----- Notebook -----#
+alias notebook="ipython notebook"
