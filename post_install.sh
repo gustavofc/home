@@ -1,18 +1,28 @@
 #!/bin/bash
 
-function download_home_files(){
+# Executar os comandos abaixo para iniciar o script de postinstall
+#
+# sudo dnf -y install git && git clone https://github.com/gustavofc/home.git
+# bash post_install.sh
+#
+#
+
+function env_files(){
   mkdir ~/github
-  git clone https://github.com/gustavofc/home.git ~/github/home
-  ln -s github/home/bashrc ~/.bashrc
-  ln -s github/home/bash_aliases ~/.bash_aliases
-  ln -s github/home/vimrc ~/.vimrc
-  ln -s github/home/vim ~/.vim
-  ln -s github/home/toprc ~/.toprc
-  source github/home/bashrc
+  cp -pa ~/home ~/github/
+  rm -f ~/.bashrc && ln -s ~/github/home/bashrc ~/.bashrc
+  rm -f ~/.bash_aliases &&  ln -s ~/github/home/bash_aliases ~/.bash_aliases
+  rm -f ~/.vimrc && ln -s ~/github/home/vimrc ~/.vimrc
+  rm -f ~/.vim && ln -s ~/github/home/vim ~/.vim
+  rm -f ~/.toprc && ln -s ~/github/home/toprc ~/.toprc
+  source ~/github/home/bashrc
 }
 
 function install_packages(){
-  dnf -y install cups-pdf wget rpm-build vim bind-utils iptraf make gcc git
+  sudo dnf -y install cups-pdf wget rpm-build vim bind-utils iptraf make gcc \
+    git kernel-headers kernel-devel
+  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  vim +PluginInstall +qall
 }
 
 function git_config(){
@@ -73,9 +83,9 @@ function install_tor(){
 
 function install_python_pkgs(){
   dnf -y install python-pip python-ipython-console
-  sudo pip install virtualenv
 }
 
 # Main
-download_home_files
-install_powerlines_fonts
+install_packages
+env_files
+install_python_pkgs
