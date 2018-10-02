@@ -19,6 +19,21 @@ export HISTSIZE=100000                  # big big history
 export HISTFILESIZE=100000              # big big history
 shopt -s histappend                     # append to history, don't overwrite it
 
+# New PS1
+PS1="\W \$ "
+
+# linux - git
+#if [ -f ~/.ps1_git ]; then
+#      . ~/.ps1_git
+#fi
+source /etc/bash_completion.d/git-prompt.sh
+PS1='$(__git_ps1)'$PS1
+
+# virtualenvwrapper
+export WORKON_HOME=~/envs
+source /usr/bin/virtualenvwrapper.sh
+
+
 # Save and reload the history after each command finishes
 #export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 

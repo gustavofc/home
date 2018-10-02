@@ -112,6 +112,7 @@ highlight cursorline ctermbg=236
 
 " Line Number
 set number
+set relativenumber
 
 " Tabs and spaces settings
 set tabstop=2

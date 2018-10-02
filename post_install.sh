@@ -2,25 +2,24 @@
 
 # Executar os comandos abaixo para iniciar o script de postinstall
 #
-# sudo dnf -y install git && git clone https://github.com/gustavofc/home.git
-# bash post_install.sh
-#
+# wget https://raw.githubusercontent.com/gustavofc/home/master/post_install.sh
 #
 
 function env_files(){
   mkdir ~/github
-  cp -pa ~/home ~/github/
-  rm -f ~/.bashrc && ln -s ~/github/home/bashrc ~/.bashrc
-  rm -f ~/.bash_aliases &&  ln -s ~/github/home/bash_aliases ~/.bash_aliases
-  rm -f ~/.vimrc && ln -s ~/github/home/vimrc ~/.vimrc
-  rm -f ~/.vim && ln -s ~/github/home/vim ~/.vim
-  rm -f ~/.toprc && ln -s ~/github/home/toprc ~/.toprc
+  git clone https://github.com/gustavofc/home.git ~/github/home
+  ln -s -f github/home/bashrc ~/.bashrc
+  ln -s -f github/home/bash_aliases ~/.bash_aliases
+  ln -s -f github/home/vimrc ~/.vimrc
+  ln -s -f github/home/vim ~/.vim
+  ln -s -f github/home/toprc ~/.toprc
+  ln -s -f github/home/gitconfig ~/.gitconfig
   source ~/github/home/bashrc
 }
 
 function install_packages(){
-  sudo dnf -y install cups-pdf wget rpm-build vim bind-utils iptraf make gcc \
-    git kernel-headers kernel-devel
+  su - root -c "dnf -y install cups-pdf wget rpm-build vim bind-utils iptraf\
+    make gcc git kernel-headers kernel-devel"
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
   vim +PluginInstall +qall
 }
@@ -51,27 +50,9 @@ function install_cntlm(){
 EOF
 }
 
-function printers(){
-  dnf -y install system-config-printer
-}
-
-function desktop_config(){
-  dnf -y install dconf-editor
-  gsettings set org.gnome.desktop.interface clock-show-seconds true
-  gsettings set org.gnome.desktop.interface clock-show-date true
-  gsettings set org.gnome.desktop.session idle-delay 180
-  gsettings set org.gnome.settings-daemon.plugins.media-keys volume-down '<Alt>KP_Subtract'
-  gsettings set org.gnome.settings-daemon.plugins.media-keys volume-up '<Alt>KP_Add'
-  gsettings set org.gnome.settings-daemon.plugins.media-keys pause '<Alt>KP_Divide'
-  gsettings set org.gnome.settings-daemon.plugins.media-keys play '<Alt>KP_Multiply'
-  gsettings set org.gnome.shell.window-switcher current-workspace-only false
-  gsettings set org.gnome.shell.overrides dynamic-workspaces false
-  gsettings set org.gnome.shell.overrides workspaces-only-on-primary false
-}
-
 function install_powerlines_fonts(){
-  git clone https://github.com/powerline/fonts.git
-  ./fonts/install.sh
+  git clone https://github.com/powerline/fonts.git ~/github/fonts
+  ./github/fonts/install.sh
 }
 
 function install_tor(){
@@ -89,3 +70,4 @@ function install_python_pkgs(){
 install_packages
 env_files
 install_python_pkgs
+install_powerlines_fonts
