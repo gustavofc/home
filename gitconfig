@@ -22,6 +22,10 @@
   default = matching
 [color]
   ui = auto
+[format]
+  pretty = format:%C(yellow)%h%Creset %<(15,trunc)%an %ad %<(50,trunc)%s %C(green)%d%Creset
+[log]
+  date = format:%d-%m-%Y %H:%M
 [color "branch"]
   current = yellow bold
   local = green bold
@@ -56,6 +60,7 @@
   ap = apply
   as = apply --stat
   ac = apply --check
+  alias = config --get-regexp alias
   #############
   ama = am --abort
   amr = am --resolved
@@ -74,6 +79,7 @@
   cd = commit --amend
   cad = commit -a --amend
   ced = commit --allow-empty --amend
+  co = checkout
   #############
   d = diff
   dc = diff --cached
@@ -93,8 +99,9 @@
   #############
   g = grep -p
   #############
-  l = log --oneline
-  lg = log --oneline --graph --decorate
+  l = log -10 --oneline 
+	lg = log -10 --oneline --graph --decorate
+  lo = log -10 --graph --decorate --date=format:'%d-%m-%Y %H:%M' --pretty=format:'%C(yellow)%h%Creset %<(15,trunc)%an %ad %<(50,trunc)%s %C(green)%d%Creset'
   #############
   ls = ls-files
   lsf = "!git ls-files | grep -i"
@@ -200,3 +207,5 @@
   human = name-rev --name-only --refs=refs/heads/*
   serve = !git daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
   snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
+[http]
+	sslVerify = false
