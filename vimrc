@@ -30,7 +30,7 @@ Plugin 'jacoborus/tender'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 " Using the jedi autocompletion library for VIM.
-" Plugin 'davidhalter/jedi-vim'
+Plugin 'davidhalter/jedi-vim'
 " A Vim plugin that always highlights the enclosing html/xml tags
 Plugin 'Valloric/MatchTagAlways'
 " This indentation script for python tries to match more closely what is
@@ -39,6 +39,8 @@ Plugin 'vim-scripts/indentpython.vim'
 " Helps developers define and maintain consistent coding styles between
 " different editors and IDEs
 Plugin 'editorconfig/editorconfig-vim'
+" PEP 8 checking 
+Plugin 'nvie/vim-flake8'
 
 " vim-scripts repos
 Bundle 'L9'
@@ -70,7 +72,8 @@ set background=dark
 " let g:solarized_degrade=1
 " let g:solarized_contrast="high"
 " let g:solarized_visibility="high"
-colorscheme jellybeans
+colorscheme tender
+let python_highlight_all=1
 syntax enable
 
 " -------------------------------------------------------------------
@@ -139,7 +142,7 @@ set laststatus=2
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
 endif
- let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=1
 " Always show 5 lines above/below the cursor, so scrolling past bottom/top of
 " the screen will show more context of surrounding lines
 set scrolloff=5
