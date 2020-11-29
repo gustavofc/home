@@ -6,23 +6,27 @@
 #
 
 function env_files(){
-  mkdir ~/github
-  git clone https://github.com/gustavofc/home.git ~/github/home
-  ln -s -f github/home/bashrc ~/.bashrc
-  ln -s -f github/home/bash_aliases ~/.bash_aliases
-  ln -s -f github/home/vimrc ~/.vimrc
-  ln -s -f github/home/vim ~/.vim
-  ln -s -f github/home/toprc ~/.toprc
-  ln -s -f github/home/gitconfig ~/.gitconfig
-  source ~/github/home/bashrc
+  mkdir ~/github.com
+  git clone https://github.com/gustavofc/home.git ~/github.com/home
+  ln -s -f github.com/home/bashrc ~/.bashrc
+  ln -s -f github.com/home/bash_aliases ~/.bash_aliases
+  ln -s -f github.com/home/vimrc ~/.vimrc
+  ln -s -f github.com/home/vim ~/.vim
+  ln -s -f github.com/home/toprc ~/.toprc
+  ln -s -f github.com/home/gitconfig ~/.gitconfig
+  source ~/github.com/home/bashrc
 }
 
 function install_packages(){
   su - root -c "dnf -y install cups-pdf wget rpm-build vim bind-utils iptraf\
     make gcc git kernel-headers kernel-devel"
+}
+
+function configure_vim(){
   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
   vim +PluginInstall +qall
 }
+
 
 function git_config(){
   git config --global push.default=simple
@@ -51,8 +55,8 @@ EOF
 }
 
 function install_powerlines_fonts(){
-  git clone https://github.com/powerline/fonts.git ~/github/fonts
-  ./github/fonts/install.sh
+  git clone https://github.com/powerline/fonts.git ~/github.com/fonts
+  ./github.com/fonts/install.sh
 }
 
 function install_tor(){
@@ -67,7 +71,8 @@ function install_python_pkgs(){
 }
 
 # Main
-install_packages
+#install_packages
 env_files
+configure_vim
 install_python_pkgs
 install_powerlines_fonts
